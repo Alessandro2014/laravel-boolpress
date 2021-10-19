@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Auth::routes(['register']);
 
+// ROTTE PER CUI E' NECESSARIA L'AUTENTICAZIONE, ADMIN SARA' IL PREFISSO
 Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
+    Route::resource('posts', 'PostController');
 });
