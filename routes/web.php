@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('guest/admin');
 });
 
-Auth::routes(['register' => false]);
+Auth::routes(['register']);
 
 Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
