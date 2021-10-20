@@ -24,3 +24,8 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->
     Route::get('/', 'HomeController@index')->name('home');
     Route::resource('posts', 'PostController');
 });
+
+// INDICAZIONE PER GESTIRE TUTTE LE ROTTE CHE NON SIANO DI AUTH(LOGIN, REGISTER..) E NEMMENO DI ADMIN
+Route::get('{any?}', function () {
+    return view('guest.home');
+})->where('any', '.*');
