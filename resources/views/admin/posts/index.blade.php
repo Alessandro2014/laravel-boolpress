@@ -17,11 +17,11 @@
             <tbody>
                 @forelse($posts as $post)
                     <tr>
-                        <th scope="row">{{ $posts->id }} </th>
-                        <td>{{ $posts->title }}</td>
-                        <td>{{ $posts->created_at }}</td>
-                        <td>{{ $posts->images }}</td>
-                        <td><a href="{{ route('admin.posts.show', $posts->id) }}">Dettaglio</a></td>
+                        <th scope="row">{{ $post->id }} </th>
+                        <td>{{ $post->title }}</td>
+                        <td>{{ $post->getFormattedDate('created_at', 'H:i d-m-Y') }}</td>
+                        <td>{{ $post->images }}</td>
+                        <td><a href="{{ route('admin.posts.show', $post->id) }}">Dettaglio</a></td>
                     </tr>
                 @empty
                     <tr>
