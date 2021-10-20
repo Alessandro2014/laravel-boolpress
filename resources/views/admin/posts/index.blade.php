@@ -11,7 +11,6 @@
                     <th scope="col">#</th>
                     <th scope="col">Titotlo</th>
                     <th scope="col">Scritto il </th>
-                    <th scope="col">Immagine</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,7 +19,6 @@
                         <th scope="row">{{ $post->id }} </th>
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->getFormattedDate('created_at', 'H:i d-m-Y') }}</td>
-                        <td>{{ $post->images }}</td>
                         <td><a href="{{ route('admin.posts.show', $post->id) }}">Dettaglio</a></td>
                     </tr>
                 @empty
