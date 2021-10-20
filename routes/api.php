@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// ROUTE DEL CONTROLLER CHE GESTISCE LE API
 Route::namespace('Api')->group(function () {
-   Route::get('/posts', 'PostController@index');
-   Route::get('/posts/{post}', 'PostController@show');
+   Route::resource('posts', 'PostController');
 });

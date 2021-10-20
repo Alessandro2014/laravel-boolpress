@@ -25,12 +25,13 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Titotlo</th>
+                    <th scope="col">Titolo</th>
                     <th scope="col">Scritto il </th>
                     <th scope="col" class="text-center">Opzioni</th>
                 </tr>
             </thead>
             <tbody>
+                {{-- CICLO FOR E STAMPA DETTAGLIO POST --}}
                 @forelse($posts as $post)
                     <tr>
                         <th scope="row">{{ $post->id }} </th>

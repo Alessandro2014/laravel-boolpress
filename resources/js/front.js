@@ -8,9 +8,11 @@
  require('./bootstrap');
 
  window.Vue = require('vue');
+ //IMPORTO AXIOS
+ window.axios = require("axios");
  
 import App from './components/App.vue';
-
+// INIZIALIZZO VUE
 const app= new Vue({
     el: '#root',
     render: h => h(App)

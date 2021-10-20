@@ -1,15 +1,31 @@
 <template>
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="text center">
-                <h1 class="card-header">Welcome to the Alessandro website</h1>
-            </div>
+        <h1>Benvenuto su Boolpress</h1>
+
+        <div class="row">
+            <div class="text center"></div>
         </div>
     </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
-    name: "App"
+    name: "App",
+    data() {
+        return {};
+    },
+    method: {
+        getPosts() {
+            axios
+                .get(`http://localhost:8000/api/posts`)
+                .then(res => {
+                    console.log(res);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+    }
 };
 </script>

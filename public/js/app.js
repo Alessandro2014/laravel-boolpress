@@ -2270,6 +2270,8 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2280,8 +2282,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "App"
+  name: "App",
+  data: function data() {
+    return {};
+  },
+  method: {
+    getPosts: function getPosts() {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8000/api/posts").then(function (res) {
+        console.log(res);
+      })["catch"](function (error) {
+        console.error(error);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -37955,12 +37970,10 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "text center" }, [
-          _c("h1", { staticClass: "card-header" }, [
-            _vm._v("Welcome to the Alessandro website")
-          ])
-        ])
+      _c("h1", [_vm._v("Benvenuto su Boolpress")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "text center" })
       ])
     ])
   }
