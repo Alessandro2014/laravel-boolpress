@@ -19,7 +19,17 @@
                         <th scope="row">{{ $post->id }} </th>
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->getFormattedDate('created_at', 'H:i d-m-Y') }}</td>
-                        <td><a href="{{ route('admin.posts.show', $post->id) }}">Dettaglio</a></td>
+                        <td class="text-right">
+                            <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-info p-2">Dettaglio</a>
+                            <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-secondary p-2">Modifica</a>
+                            <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST"
+                                class="d-inline delete-form" data-post="{{ $post->title }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Elimina</button>
+                            </form>
+                        </td>
+
                     </tr>
                 @empty
                     <tr>
