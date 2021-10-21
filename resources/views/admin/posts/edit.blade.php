@@ -24,13 +24,22 @@
             </div>
             <div class="col-md-12  mb-4">
                 <label for="content" class="form-label">Descrizione</label>
-                <textarea class="form-control @error('content') is-invalid @enderror" id="content"
-                    name="content" rows="3" value="">{{ $post->content }}</textarea>
+                <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="3"
+                    value="">{{ $post->content }}</textarea>
                 @error('content')
                     <div class="invalid-feedback">
                         Inserisci una descrizione di almeno 20 lettere
                     </div>
                 @enderror
+            </div>
+            <div class="form-group">
+                <label for="category_id">Seleziona una categoria</label>
+                <select multiple class="form-control" id="category_id" name="category_id">
+                    <option>Nessuna categoria</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->$id }}">{{ $category->$name }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-secondary">Conferma Modifica</button>
