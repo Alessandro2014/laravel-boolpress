@@ -1,31 +1,19 @@
 <template>
     <div class="container">
-        <h1>Benvenuto su Boolpress</h1>
-
-        <div class="row">
-            <div class="text center"></div>
-        </div>
+        <h1 class="mt-5">Benvenuto su Boolpress</h1>
+        <PostList />
     </div>
 </template>
 
 <script>
-import axios from "axios";
+import PostList from "./Posts/PostList.vue";
 export default {
     name: "App",
     data() {
         return {};
     },
-    method: {
-        getPosts() {
-            axios
-                .get(`http://localhost:8000/api/posts`)
-                .then(res => {
-                    console.log(res);
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        }
+    components: {
+        PostList
     }
 };
 </script>

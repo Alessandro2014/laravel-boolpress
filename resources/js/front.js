@@ -6,10 +6,11 @@
  */
 
  require('./bootstrap');
+ 
+ window.axios = require("axios");
 
  window.Vue = require('vue');
  //IMPORTO AXIOS
- window.axios = require("axios");
  
 import App from './components/App.vue';
 // INIZIALIZZO VUE
