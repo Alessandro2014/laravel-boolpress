@@ -39,27 +39,42 @@
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->getFormattedDate('created_at', 'H:i d-m-Y') }}</td>
                         <td>
-                        @if ($post->category) {{ $post->category->name }} @else
-                                -
+                        @if ($post->category) {{ $post->category->name }} @else -
                         </td>
-                        @endif
-                        <td class="">
-                            <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-info p-2">Dettaglio</a>
-                            <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-secondary p-2">Modifica</a>
-                            <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST"
-                                class="d-inline delete-form" data-post="{{ $post->title }}">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Elimina</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @empty
-                        <tr>
-                            <th colspan="3" class="text-center">Non ci sono post</th>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-    @endsection
+                @endif
+                <td class="">
+                    <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-info p-2">Dettaglio</a>
+                    <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-secondary p-2">Modifica</a>
+                    <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST" class="d-inline delete-form"
+                        data-post="{{ $post->title }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Elimina</button>
+                    </form>
+                </td>
+                </tr>
+            @empty
+                <tr>
+                    <th colspan="3" class="text-center">Non ci sono post</th>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    @foreach ($categories as $category)
+                        <div class="col-3">
+                            <h3>{{ $category->name }}</h3>
+                            @forelse($category->posts as $post)
+                                <h6> <a href="{{ route('admin.posts.show', $post->id) }}">{{ $post->title }}</a></h6>
+                            @empty Nessun post per questa categoria
+                            @endforelse
+                        </div>
+                    @endforeach
+                </div>
+
+            </div>
+        </footer>
+    </div>
+@endsection
