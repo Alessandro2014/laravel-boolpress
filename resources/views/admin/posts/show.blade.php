@@ -17,6 +17,7 @@
                             @if ($post->category) {{ $post->category->name }} @else
                                     nessuna categoria
                             </span>
+                            @endif
                         </p>
                         <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-secondary p-2">Modifica</a>
                         <a href="{{ route('admin.posts.index') }}" class="btn btn-light">Indietro</a>

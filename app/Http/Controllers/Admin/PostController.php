@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -60,7 +61,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        
+
         $categories = Category::all();
         return view('admin.posts.edit', compact('post', 'categories'));
     }
@@ -74,7 +75,14 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $request->validate([
+            'title' => 'required|min:3|max:30',
+            'content' => 'required|string',
+            'category_id' => 'nullable|exists:categories,id'
+        ]);
         $data = $request->all();
+        $post->slug = Str::slug($post->title, '-');
+        $post->fill($data);
         $post->update($data);
         return redirect()->route('admin.posts.show', $post->id);
     }

@@ -42,6 +42,7 @@
                         @if ($post->category) {{ $post->category->name }} @else
                                 -
                         </td>
+                        @endif
                         <td class="">
                             <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-info p-2">Dettaglio</a>
                             <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-secondary p-2">Modifica</a>
