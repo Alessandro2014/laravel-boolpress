@@ -11,7 +11,7 @@
             <div class="col-md-6 mb-4">
                 <label for="title" class="form-label">Titolo</label>
                 <input type="text" class="form-control  @error('title') is-invalid @enderror" id="title" name="title"
-                    value="{{ $post->title }}">
+                    value="{{ old('title', $post->title) }}">
                 @error('title')
                     <div class="invalid-feedback">
                         Inserisci un titolo valido
@@ -20,12 +20,12 @@
             </div>
             <div class="col-md-8  mb-4">
                 <label for="image" class="form-label">Link immagine</label>
-                <input type="text" class="form-control" id="image" name="image" value="{{ $post->image }}">
+                <input type="text" class="form-control" id="image" name="image" value="{{ old('image', $post->image) }}">
             </div>
             <div class="col-md-12  mb-4">
                 <label for="content" class="form-label">Descrizione</label>
                 <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="3"
-                    value="">{{ $post->content }}</textarea>
+                    value="">{{ old('content', $post->content) }}</textarea>
                 @error('content')
                     <div class="invalid-feedback">
                         Inserisci una descrizione di almeno 20 lettere
@@ -37,7 +37,7 @@
                 <select class="form-control" id="category_id" name="category_id">
                     <option>Nessuna categoria</option>
                     @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        <option @if (old('category_id') == $category->id) selected @endif value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
             </div>
