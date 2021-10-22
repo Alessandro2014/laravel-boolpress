@@ -38,8 +38,8 @@
                     <option>Nessuna categoria</option>
                     {{-- CICLO PER STAMPA CATEGORIA --}}
                     @foreach ($categories as $category)
-                        <option @if (old('category_id', $post->category->id) == $category->id) @else 1 @endif value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach
+                        <option @if ($post->category_id == $category->id) selected @else value="{{ $category->id }}" @endif>{{ $category->name }}</option>
+                        @endforeach
                 </select>
             </div>
             <div class="col-12">
