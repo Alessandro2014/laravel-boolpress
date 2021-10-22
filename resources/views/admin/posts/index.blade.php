@@ -60,7 +60,11 @@
                 @endforelse
             </tbody>
         </table>
-        <footer>
+        <hr>
+        {{-- PAGINAZIONE --}}
+        {{ $posts->links() }}
+        {{-- FOOTER CON RAGGRUPPAMENTO PER CATEGORIA --}}
+        <footer class="mt-4">
             <div class="container">
                 <div class="row">
                     @foreach ($categories as $category)
