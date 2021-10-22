@@ -32,12 +32,12 @@
                     </div>
                 @enderror
             </div>
-            <div class="form-group">
+            <div class="col-md-3 form-group">
                 <label for="category_id">Seleziona una categoria</label>
-                <select multiple class="form-control" id="category_id" name="category_id">
+                <select class="form-control" id="category_id" name="category_id">
                     <option>Nessuna categoria</option>
                     @foreach ($categories as $category)
-                        <option value="{{ $category->$id }}">{{ $category->$name }}</option>
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
             </div>

@@ -60,7 +60,6 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $post = new Post();
         $categories = Category::all();
         return view('admin.posts.edit', compact('post', 'categories'));
     }

@@ -19,15 +19,9 @@
             background-color: #fff;
             color: #636b6f;
             font-family: 'Nunito', sans-serif;
-            font-weight: 200;
-            height: 100vh;
+            
             margin: 0;
         }
-
-        .full-height {
-            height: 100vh;
-        }
-
         .flex-center {
             align-items: center;
             display: flex;
@@ -84,13 +78,13 @@
                 @endauth
             </div>
         @endif
-
-        <div id="root">
-
-        </div>
-
+    </div>
+    <div id="root">
 
     </div>
+
+
+
     <script src="{{ asset('js/front.js') }}"></script>
 </body>
 

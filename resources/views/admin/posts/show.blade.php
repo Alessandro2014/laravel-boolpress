@@ -2,12 +2,12 @@
 
 @section('content')
     <section class="container">
-        <div class="card mb-3">
-            <div class="row no-gutters">
-                <div class="col-md-4">
-                    <img src="{{ $post->image }}" alt="{{ $post->title }}">
+        <div class="card mb-2">
+            <div class="row">
+                <div class="col-md-3">
+                    <img class="img-fluid" src="{{ $post->image }}" alt="{{ $post->title }}">
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-9">
                     <div class="card-body">
                         <h5 class="card-title">{{ $post->title }}</h5>
                         <p class="card-text">{{ $post->content }}</p>
