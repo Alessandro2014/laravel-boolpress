@@ -28,6 +28,7 @@
                     <th scope="col">Titolo</th>
                     <th scope="col">Scritto il</th>
                     <th scope="col">Categoria</th>
+                    <th scope="col">Tags</th>
                     <th scope="col" class="">Opzioni</th>
                 </tr>
             </thead>
@@ -41,10 +42,13 @@
                         <td>
                         @if ($post->category) {{ $post->category->name }} @else -
                         </td>
+
                         <td>
-                        @foreach ($tags as $tag)
-                        @if ($tags->tag) {{ $tags->tag->name }} @else -
-                        @endforeach
+                            {{-- @dump($post->tags) --}}
+                            @forelse ($post->tags as $tag)
+                            <span> {{ $tag->name }}</span>
+                            @empty -
+                            @endforelse
                         </td>
                 @endif
                 <td class="">

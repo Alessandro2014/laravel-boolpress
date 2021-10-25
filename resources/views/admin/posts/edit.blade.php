@@ -42,13 +42,13 @@
                     @endforeach
                 </select>
             </div>
-            <div class="col-md-2 .offset-md-3">
+            <div class="col-md-2 offset-md-3">
                 <h4>Tags</h4>
                 @foreach ($tags as $tag)
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="tag-{{$tag->id}}" value="{{$tag->id}}" name="tags[]">
-                    <label class="form-check-label" for="tag-{{$tag->id}}">{{$tag->name}}</label>
-                </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" @if (in_array($tag->id, old('tags', []))) cheked @endif type="checkbox"  id="tag-{{ $tag->id }}" value="{{ $tag->id }}" name="tags[]">
+                        <label class="form-check-label" for="tag-{{ $tag->id }}">{{ $tag->name }}</label>
+                    </div>
                 @endforeach
             </div>
             <div class="col-12">
