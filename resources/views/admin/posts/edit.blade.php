@@ -39,8 +39,16 @@
                     {{-- CICLO PER STAMPA CATEGORIA --}}
                     @foreach ($categories as $category)
                         <option @if ($post->category_id == $category->id) selected @else value="{{ $category->id }}" @endif>{{ $category->name }}</option>
-                        @endforeach
+                    @endforeach
                 </select>
+            </div>
+            <div class="col-md-2 .offset-md-3">
+                <h4>Tags</h4>
+                @foreach ($tags as $tag)
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="tag-{{$tag->id}}" value="{{$tag->id}}" name="tags[]">
+                    <label class="form-check-label" for="tag-{{$tag->id}}">{{$tag->name}}</label>
+                </div>
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-secondary">Conferma Modifica</button>
