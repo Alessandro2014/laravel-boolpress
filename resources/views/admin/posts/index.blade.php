@@ -41,6 +41,11 @@
                         <td>
                         @if ($post->category) {{ $post->category->name }} @else -
                         </td>
+                        <td>
+                        @foreach ($tags as $tag)
+                        @if ($tags->tag) {{ $tags->tag->name }} @else -
+                        @endforeach
+                        </td>
                 @endif
                 <td class="">
                     <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-info p-2">Dettaglio</a>
@@ -53,32 +58,32 @@
                     </form>
                 </td>
                 </tr>
-            @empty
-                <tr>
-                    <th colspan="3" class="text-center">Non ci sono post</th>
-                </tr>
-                @endforelse
-            </tbody>
-        </table>
-        <hr>
-        {{-- PAGINAZIONE --}}
-        {{ $posts->links() }}
-        {{-- FOOTER CON RAGGRUPPAMENTO PER CATEGORIA --}}
-        <footer class="mt-4">
-            <div class="container">
-                <div class="row">
-                    @foreach ($categories as $category)
-                        <div class="col-3">
-                            <h3>{{ $category->name }}</h3>
-                            @forelse($category->posts as $post)
-                                <h6> <a href="{{ route('admin.posts.show', $post->id) }}">{{ $post->title }}</a></h6>
-                            @empty Nessun post per questa categoria
-                            @endforelse
-                        </div>
-                    @endforeach
-                </div>
+                @empty
+                    <tr>
+                        <th colspan="3" class="text-center">Non ci sono post</th>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+            <hr>
+            {{-- PAGINAZIONE --}}
+            {{ $posts->links() }}
+            {{-- FOOTER CON RAGGRUPPAMENTO PER CATEGORIA --}}
+            <footer class="mt-4">
+                <div class="container">
+                    <div class="row">
+                        @foreach ($categories as $category)
+                            <div class="col-3">
+                                <h3>{{ $category->name }}</h3>
+                                @forelse($category->posts as $post)
+                                    <h6> <a href="{{ route('admin.posts.show', $post->id) }}">{{ $post->title }}</a></h6>
+                                @empty Nessun post per questa categoria
+                                @endforelse
+                            </div>
+                        @endforeach
+                    </div>
 
-            </div>
-        </footer>
-    </div>
-@endsection
+                </div>
+            </footer>
+        </div>
+    @endsection
