@@ -36,58 +36,59 @@
                 {{-- CICLO FOR E STAMPA DETTAGLIO POST --}}
                 @forelse($posts as $post)
                     <tr>
-                        <th scope="row">{{ $post->id }} </th>
+                        <td scope="row">{{ $post->id }} </td>
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->getFormattedDate('created_at', 'H:i d-m-Y') }}</td>
                         <td>
-                        @if ($post->category) {{ $post->category->name }} @else -
+                            @if ($post->category) 
+                            {{ $post->category->name }}
+                            @else -
+                            @endif
                         </td>
-
                         <td>
                             {{-- @dump($post->tags) --}}
                             @forelse ($post->tags as $tag)
-                            <span> {{ $tag->name }}</span>
+                                <span> {{ $tag->name }}</span>
                             @empty -
                             @endforelse
                         </td>
-                @endif
-                <td class="">
-                    <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-info p-2">Dettaglio</a>
-                    <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-secondary p-2">Modifica</a>
-                    <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST" class="d-inline delete-form"
-                        data-post="{{ $post->title }}">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Elimina</button>
-                    </form>
-                </td>
-                </tr>
+                        <td class="">
+                            <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-info p-2">Dettaglio</a>
+                            <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-secondary p-2">Modifica</a>
+                            <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST"
+                                class="d-inline delete-form" data-post="{{ $post->title }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Elimina</button>
+                            </form>
+                        </td>
+                    </tr>
                 @empty
                     <tr>
                         <th colspan="3" class="text-center">Non ci sono post</th>
                     </tr>
-                    @endforelse
-                </tbody>
-            </table>
-            <hr>
-            {{-- PAGINAZIONE --}}
-            {{ $posts->links() }}
-            {{-- FOOTER CON RAGGRUPPAMENTO PER CATEGORIA --}}
-            <footer class="mt-4">
-                <div class="container">
-                    <div class="row">
-                        @foreach ($categories as $category)
-                            <div class="col-3">
-                                <h3>{{ $category->name }}</h3>
-                                @forelse($category->posts as $post)
-                                    <h6> <a href="{{ route('admin.posts.show', $post->id) }}">{{ $post->title }}</a></h6>
-                                @empty Nessun post per questa categoria
-                                @endforelse
-                            </div>
-                        @endforeach
-                    </div>
-
+                @endforelse
+            </tbody>
+        </table>
+        <hr>
+        {{-- PAGINAZIONE --}}
+        {{ $posts->links() }}
+        {{-- FOOTER CON RAGGRUPPAMENTO PER CATEGORIA --}}
+        <footer class="mt-4">
+            <div class="container">
+                <div class="row">
+                    @foreach ($categories as $category)
+                        <div class="col-3">
+                            <h3>{{ $category->name }}</h3>
+                            @forelse($category->posts as $post)
+                                <h6> <a href="{{ route('admin.posts.show', $post->id) }}">{{ $post->title }}</a></h6>
+                            @empty Nessun post per questa categoria
+                            @endforelse
+                        </div>
+                    @endforeach
                 </div>
-            </footer>
-        </div>
-    @endsection
+
+            </div>
+        </footer>
+    </div>
+@endsection

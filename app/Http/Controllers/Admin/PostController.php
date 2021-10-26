@@ -43,15 +43,21 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([]);
+        // $request->validate([
+        //     'title' => 'required|min:3|max:30',
+        //     'content' => 'required|string',
+        //     'category_id' => 'nullable|exists:categories,id',
+        //     'tags' => 'nullable|exists:tags,id',
+        // ]);
         // $data = $request->all();
-        // $post= new Post();
+
+        // $post = new Post();
         // $data['user_id'] = Auth::id();
+        // $post->slug = Str::slug($post->title, '-');
         // $post->fill($data);
-
-        // if (array_key_exists('tags', $data)) $post->tags()->attach($data['tags']);
         // $post->save();
-
+        // if (array_key_exists('tags', $data)) $post->tags()->attach($data['tags']);
+        // return redirect()->route('admin.posts.show', $post->id);
     }
 
     /**
@@ -75,7 +81,8 @@ class PostController extends Controller
     {
         $tags = Tag::all();
         $categories = Category::all();
-        return view('admin.posts.edit', compact('tags', 'post', 'categories'));
+        $tag_ids = $post->tags->pluck('id')->toArray();
+        return view('admin.posts.edit', compact('tag_ids', 'tags', 'post', 'categories'));
     }
 
     /**
@@ -95,9 +102,10 @@ class PostController extends Controller
         ]);
         $data = $request->all();
         $post->slug = Str::slug($post->title, '-');
-        $post->fill($data);
-        $post->update($data);        
-        if (array_key_exists('tags', $data)) $post->tags()->attach($data['tags']);
+        // $post->fill($data);
+        if (!array_key_exists('tags', $data)) $post->tags()->detach();
+        else $post->tags()->sync($data['tags']);
+        $post->update($data);
 
         return redirect()->route('admin.posts.show', $post->id);
     }

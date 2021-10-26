@@ -35,18 +35,20 @@
             <div class="col-md-3 form-group">
                 <label for="category_id">Seleziona una categoria</label>
                 <select class="form-control" id="category_id" name="category_id">
-                    <option>Nessuna categoria</option>
+                    <option value="">Nessuna categoria</option>
                     {{-- CICLO PER STAMPA CATEGORIA --}}
                     @foreach ($categories as $category)
-                        <option @if ($post->category_id == $category->id) selected @else value="{{ $category->id }}" @endif>{{ $category->name }}</option>
+                        <option @if ($post->category_id == $category->id) selected  @endif value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
             </div>
-            <div class="col-md-2 offset-md-3">
+            <div class="col-md-8 offset-md-1">
                 <h4>Tags</h4>
+                {{-- CICLO PER STAMPA TAGS --}}
                 @foreach ($tags as $tag)
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" @if (in_array($tag->id, old('tags', []))) cheked @endif type="checkbox"  id="tag-{{ $tag->id }}" value="{{ $tag->id }}" name="tags[]">
+                        <input class="form-check-input" type="checkbox" id="tag-{{ $tag->id }}"
+                            value="{{ $tag->id }}" name="tags[]" @if (in_array($tag->id, old('tags', $tag_ids ?? []))) checked @endif>
                         <label class="form-check-label" for="tag-{{ $tag->id }}">{{ $tag->name }}</label>
                     </div>
                 @endforeach
